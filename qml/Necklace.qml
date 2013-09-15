@@ -5,14 +5,13 @@ RhythmicItem {
 
     source: "../images/Dancer/Necklace.png"
     transformOrigin: Item.Top
+    state: "-1"
 
     Timer {
         interval: animationDuration
         repeat: true
         running: true
         onTriggered: {
-            if(parent.state === "" )
-                parent.state = 1
             parent.state *= -1
         }
     }

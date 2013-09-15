@@ -3,8 +3,8 @@ import com.monkeybusiness.dancer 1.0
 
 Rectangle {
     id: root
-    width: 480
-    height: 800
+    width: 800
+    height: 480
 
     color: "grey"
 
@@ -12,11 +12,18 @@ Rectangle {
         id: audioListener
     }
 
+    Speaker {
+        id: leftSpeaker
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin:  10
+        anchors.bottomMargin: 10
+    }
+
     Dancer {
         id: dancer
-        x: 127
-        y: 170
         anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 10
     }
 
@@ -32,4 +39,5 @@ Rectangle {
             Qt.quit();
         }
     }
+
 }

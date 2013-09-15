@@ -85,9 +85,15 @@ OTHER_FILES += images/Dancer/Head.png \
                images/Dancer/RightShoe.png \
                images/Dancer/LeftShoe.png \
                images/Dancer.png \
+               images/Speaker/SpeakerBase.png \
+               images/Speaker/Bass.png \
+               images/Speaker/Mid.png \
+               images/Speaker/Treble.png \
+               images/Speaker.png \
                qml/Head.qml \
                qml/Necklace.qml \
                qml/RightHand.qml \
                qml/LeftHand.qml \
                qml/Body.qml \
-               qml/LeftShoe.qml
+               qml/LeftShoe.qml \
+               qml/Speaker.qml
