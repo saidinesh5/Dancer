@@ -4,10 +4,10 @@
 
 AudioListener::AudioListener(QObject *parent) :
     QObject(parent),
-    m_fft_machine(N_BUFFERFRAMES),
+    m_fft_machine(N_BUFFER_FRAMES),
     m_sampleRate(SAMPLE_RATE),
     m_nChannels(N_CHANNELS),
-    m_nBufferFrames(N_BUFFERFRAMES)
+    m_nBufferFrames(N_BUFFER_FRAMES)
 {
     if(m_adc.getDeviceCount() < 1)
         qDebug() << "Error! No Audio devices found.";
@@ -83,8 +83,8 @@ void AudioListener::processAudio(qint16 *data, int nFrames)
     }
 
     //Take the fft
-    m_fft_machine.do_fft(m_audioData[LEFT], m_tmp_fft_samples[LEFT]);
-    m_fft_machine.do_fft(m_audioData[RIGHT], m_tmp_fft_samples[RIGHT]);
+    m_fft_machine.do_fft(m_tmp_fft_samples[LEFT],m_audioData[LEFT]);
+    m_fft_machine.do_fft(m_tmp_fft_samples[RIGHT],m_audioData[RIGHT]);
 
     //Calculate the VU values
     float real, imaginary, vu;
@@ -104,13 +104,13 @@ void AudioListener::processAudio(qint16 *data, int nFrames)
     //Calculate the spectrum data
     for (int i = 0; i < N_CHANNELS; i++){
         for (int j = 0; j < n_fft_values; j++){
-            m_spectrumData[i][j] = m_tmp_fft_values[i][j/2] * 3.0 * pow(log( 10.0f + ((float)SAMPLE_RATE) * (j /(float)N_BUFFERFRAMES)) ,1.0f);
+            m_spectrumData[i][j] = m_tmp_fft_values[i][j/2] * 3.0 * pow(log( 10.0f + ((float)SAMPLE_RATE) * (j /(float)N_BUFFER_FRAMES)) ,1.0f);
         }
     }
 
     //Now calculate the octave data
     float current_octave =0;
-    int values_per_octave = N_BUFFERFRAMES/N_OCTAVES;
+    int values_per_octave = N_BUFFER_FRAMES/N_OCTAVES;
     for (int i = 0; i < N_CHANNELS; i++)
         for ( int j = 0; j < N_OCTAVES; j++){
             current_octave = 0;
@@ -120,4 +120,24 @@ void AudioListener::processAudio(qint16 *data, int nFrames)
             m_octaves[i][j] = current_octave;
         }
     emit audioDataUpdated();
+}
+
+
+QVariantMap AudioListener::data()
+{
+    QVariantMap result;
+    QVariantMap leftResult,rightResult;
+
+    leftResult[QString("vu")] = m_vu[LEFT];
+    rightResult[QString("vu")] = m_vu[RIGHT];
+
+    for(int i = 0; i < 8; i++ ){
+        leftResult[QString("octave%1").arg(i)] =  m_octaves[LEFT][i];
+        rightResult[QString("octave%1").arg(i)] =  m_octaves[RIGHT][i];
+    }
+
+    result[QString("left")] = leftResult;
+    result[QString("right")] = rightResult;
+
+    return result;
 }
