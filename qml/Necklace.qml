@@ -3,7 +3,7 @@ import QtQuick 2.0
 RhythmicItem {
     id: necklace
 
-    source: "../images/Necklace.png"
+    source: "../images/Dancer/Necklace.png"
     transformOrigin: Item.Top
 
     Timer {

@@ -77,16 +77,17 @@ unix_jack {
 include(qtquick2applicationviewer/qtquick2applicationviewer.pri)
 qtcAddDeployment()
 
-OTHER_FILES += images/Head.png \
-               images/Necklace.png \
-               images/RightHand.png \
-               images/LeftHand.png \
-               images/Body.png \
-               images/RightShoe.png \
-               images/LeftShoe.png \
+OTHER_FILES += images/Dancer/Head.png \
+               images/Dancer/Necklace.png \
+               images/Dancer/RightHand.png \
+               images/Dancer/LeftHand.png \
+               images/Dancer/Body.png \
+               images/Dancer/RightShoe.png \
+               images/Dancer/LeftShoe.png \
+               images/Dancer.png \
                qml/Head.qml \
                qml/Necklace.qml \
                qml/RightHand.qml \
                qml/LeftHand.qml \
                qml/Body.qml \
-    qml/LeftShoe.qml
+               qml/LeftShoe.qml

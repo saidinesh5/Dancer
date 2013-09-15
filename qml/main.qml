@@ -6,6 +6,8 @@ Rectangle {
     width: 480
     height: 800
 
+    color: "grey"
+
     AudioListener{
         id: audioListener
     }

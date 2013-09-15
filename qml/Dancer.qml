@@ -1,7 +1,11 @@
 import QtQuick 2.0
 
-RhythmicItem {
-    source: "../images/Dancer.png"
+Item {
+    id: dancer
+    //source: "../images/Dancer.png"
+
+    width: 227
+    height: 375
 
     LeftShoe {
         id: leftShoe

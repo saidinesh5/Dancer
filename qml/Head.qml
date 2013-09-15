@@ -1,5 +1,5 @@
 import QtQuick 2.0
 
 RhythmicItem {
-    source: "../images/Head.png"
+    source: "../images/Dancer/Head.png"
 }
